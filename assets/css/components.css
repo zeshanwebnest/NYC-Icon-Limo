@@ -752,7 +752,7 @@ a.topbar__item:hover {
   align-items: center;
   min-height: min(96vh, 940px);
   padding-top: calc(var(--header-h) + var(--topbar-h) + var(--space-8));
-  padding-bottom: var(--space-10);
+  padding-bottom: calc(var(--hero-overlap) + var(--hero-clearance));
   background: var(--ink);
   overflow: hidden;
 }
@@ -781,7 +781,7 @@ a.topbar__item:hover {
 
 .hero__inner {
   position: relative;
-  max-width: 40rem;
+  max-width: 44rem;
   color: var(--white);
 }
 
@@ -845,7 +845,7 @@ a.topbar__item:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-5) var(--space-6);
   margin-top: var(--space-7);
   padding-top: var(--space-6);
   border-top: 1px solid rgba(255, 255, 255, 0.14);
@@ -891,9 +891,10 @@ a.topbar__item:hover {
 /* Floating card pinned over the hero image on wide screens */
 .hero__card {
   position: absolute;
-  right: var(--gutter);
-  bottom: var(--space-11);
-  width: 250px;
+  /* Track the shell edge on wide screens instead of the viewport edge. */
+  right: max(var(--gutter), calc(50% - var(--shell) / 2 + var(--gutter)));
+  bottom: calc(var(--hero-overlap) + var(--hero-clearance) + var(--space-6));
+  width: 240px;
   padding: var(--space-5);
   border-radius: var(--r-md);
   background: rgba(255, 255, 255, 0.12);
@@ -924,10 +925,19 @@ a.topbar__item:hover {
   }
 }
 
+@media (max-width: 760px) {
+  .hero {
+    padding-bottom: var(--space-9);
+  }
+}
+
 @media (max-width: 700px) {
   .hero {
     min-height: auto;
     padding-bottom: var(--space-9);
+  }
+  :root {
+    --hero-overlap: 0rem;
   }
   .hero__scrim {
     background: linear-gradient(180deg, rgba(11, 18, 32, 0.86) 0%, rgba(11, 18, 32, 0.72) 50%, rgba(11, 18, 32, 0.92) 100%);
@@ -947,7 +957,7 @@ a.topbar__item:hover {
 .booking {
   position: relative;
   z-index: 2;
-  margin-top: calc(var(--space-10) * -1);
+  margin-top: calc(var(--hero-overlap) * -1);
   background: var(--white);
   border-radius: var(--r-lg);
   box-shadow: var(--sh-lg);
@@ -985,7 +995,11 @@ a.topbar__item:hover {
 
 .booking__grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+  /* Unequal on purpose: "Airport Transfer" and "First Class Sedan" need more
+     room than a date field does, and equal columns clipped them. */
+  grid-template-columns:
+    minmax(0, 1.05fr) minmax(0, 1.12fr) minmax(0, 1fr)
+    minmax(0, 0.92fr) minmax(0, 1.08fr) auto;
   gap: var(--space-3);
   align-items: end;
 }
@@ -1007,8 +1021,8 @@ a.topbar__item:hover {
 .booking__control {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 0.7rem 0.9rem;
+  gap: var(--space-2);
+  padding: 0.65rem 0.75rem;
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   background: var(--cream);
@@ -1033,10 +1047,14 @@ a.topbar__item:hover {
 .booking__control select {
   width: 100%;
   min-width: 0;
-  font-size: var(--fs-sm);
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--text);
   background: transparent;
+  /* Last-resort guard so a long value degrades to an ellipsis, never a clip. */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .booking__control input::placeholder {

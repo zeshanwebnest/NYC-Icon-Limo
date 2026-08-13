@@ -114,6 +114,11 @@
   --gutter: clamp(1.15rem, 0.8rem + 1.8vw, 2.5rem);
   --header-h: 84px;
   --topbar-h: 42px;
+  /* How far the booking card rides up over the hero. The hero reserves this
+     PLUS a clearance band as bottom padding, so the card never lands on the
+     hero's own content. Change it here and both sides stay in step. */
+  --hero-overlap: 7rem;
+  --hero-clearance: 4rem;
 
   /* ---------------------------------------------------------------------
      RADIUS — generous and modern
