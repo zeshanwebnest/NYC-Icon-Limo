@@ -1,0 +1,527 @@
+/*
+Theme Name: Hello Elementor Child
+Theme URI: https://github.com/elementor/hello-theme-child/
+Description: Hello Elementor Child is a child theme of Hello Elementor, created by Elementor team
+Author: Elementor Team
+Author URI: https://elementor.com/
+Template: hello-elementor
+Version: 2.4.0
+Text Domain: hello-elementor-child
+License: GNU General Public License v3 or later.
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, featured-images, rtl-language-support, threaded-comments, translation-ready
+*/
+
+/* ==========================================================================
+   WordPress-only adjustments.
+
+   Every rule in this file is scoped to the header, the footer, the mobile
+   drawer, the mobile action bar, or the two shortcode wrappers .nyc-fleet
+   and .nyc-services. Nothing here targets Elementor sections, containers, columns or
+   widgets: the page between the header and the footer is Elementor's.
+
+   The single exception is `body { overflow-x: clip }` in section 1, which the
+   sticky header cannot work without. It is commented where it sits.
+
+   A recurring theme below: Elementor's Theme Style writes its typography and
+   button rules as `.elementor-kit-123 h2`, `.elementor-kit-123 button` and so
+   on. The kit class sits on <body>, so those selectors are more specific than
+   this design's single-class ones and win by default — which is how footer
+   headings ended up at display size, and how a 46px hamburger became a gold
+   pill. The fix each time is specificity, not !important: restate the value
+   behind a second class the kit cannot out-rank.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. The header sits in the normal document flow
+
+   It was position:fixed, inherited from the static build where every page
+   opened with a full-bleed hero photo designed to run underneath it. That is
+   the wrong default for pages built in Elementor: a fixed header is out of
+   flow, so it reserves no space and Elementor content slides under it.
+
+   Sticky instead. Unlike fixed, a sticky element stays in flow and reserves
+   its own height, so nothing built in Elementor can end up behind it at rest.
+   It only rides over content while you scroll, which is the whole point.
+
+   For a header that scrolls away with the page, use `position: static` here
+   and drop the two admin-bar rules in section 5.
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  inset-inline: auto;
+  z-index: 60;
+}
+
+/* Sticky is disabled by any scroll container between the element and the
+   viewport, and base.css puts `overflow-x: hidden` on body — which silently
+   makes body exactly that. `clip` hides the same overflow without creating a
+   scroll container, so sticky keeps working.
+
+   This is the one rule in this file that is not scoped to the chrome. It is
+   here because sticky cannot work without it, and it changes only how
+   horizontal overflow is clipped — no layout, spacing or width. Browsers too
+   old for `clip` drop the declaration and keep base.css's `hidden`. */
+body {
+  overflow-x: clip;
+}
+
+/* The white bar is a ::after pinned across the whole header. In the static
+   build it faded in on scroll; an in-flow header wants it on from the start,
+   because there is no hero photo behind it to be transparent over. */
+.site-header::after {
+  opacity: 1;
+}
+
+/* …but not its drop shadow. That shadow is cast downward onto whatever sits
+   below the header, and at rest — header and content both still — it reads as
+   a stray smudge across the top of the page. It belongs to the scrolled
+   state, where it separates a floating bar from the content passing under it,
+   which is exactly when components.css adds .is-stuck. */
+.site-header::after {
+  box-shadow: none;
+}
+
+.site-header.is-stuck::after {
+  box-shadow: var(--sh-sm);
+}
+
+/* .nav lifts itself above that ::after in components.css. The top bar never
+   needed to, because the white bar only used to appear after the top bar had
+   collapsed on scroll. On from the start, it would paint over the top bar's
+   ink background and text. */
+.site-header .topbar {
+  position: relative;
+  z-index: 1;
+}
+
+/* The scroll handler in main.js still adds .is-stuck, which collapsed the top
+   bar to zero height. For a header that scrolls away with the page that would
+   just shift everything up by 42px mid-scroll. */
+.site-header.is-stuck .topbar {
+  height: var(--topbar-h);
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   2. Solid header colours
+
+   The header was drawn white-on-transparent to sit over a dark hero. Against
+   its own white bar those colours are invisible, so it takes the same values
+   components.css gives it in its scrolled state.
+   -------------------------------------------------------------------------- */
+
+.site-header .brand__name {
+  color: var(--text);
+}
+
+.site-header .brand__sub {
+  color: var(--gold-deep);
+}
+
+.site-header .nav__link {
+  color: var(--n-700);
+}
+
+.site-header .nav__link:hover {
+  color: var(--ink);
+  background: var(--cream-2);
+}
+
+.site-header .nav__link[aria-current="page"] {
+  color: var(--gold-deep);
+  background: var(--accent-tint);
+}
+
+.site-header .nav__phone-icon {
+  background: var(--accent-tint);
+  border-color: var(--accent-tint-2);
+  color: var(--gold-deep);
+}
+
+.site-header .nav__phone-label {
+  color: var(--text-faint);
+}
+
+.site-header .nav__phone-num {
+  color: var(--text);
+}
+
+/* The hamburger is a <button>, so Elementor's Theme Style button rules reach
+   it and turn a 46px square into a wide gold pill — its background, padding,
+   radius and min-height all land on top. Every property it can touch is put
+   back here, at a specificity the kit cannot beat.
+
+   `display` has to be restated at this specificity too, including the
+   breakpoint: without it the rule below would out-rank the `display: flex`
+   that components.css only applies under 1100px, and the button would never
+   appear on mobile at all. */
+.site-header .nav__toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  background: var(--cream-2);
+  box-shadow: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0;
+  line-height: 0;
+}
+
+@media (max-width: 1100px) {
+  .site-header .nav__toggle {
+    display: flex;
+  }
+}
+
+.site-header .nav__toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   3. Full-bleed chrome
+
+   Hello lays out .site-header and .site-footer for its own markup — the same
+   two class names this design uses — with a flex context and a max-width.
+   That flex context is what made the top bar shrink to the width of its own
+   text instead of spanning the screen.
+
+   These were `width: 100vw` with a negative margin, to escape a boxed page.
+   That is what left the gap down the right-hand side: `100vw` counts the
+   vertical scrollbar, the visible content area does not, so the element sat
+   a scrollbar-width out of step with the page.
+
+   The page is not boxed any more, so the vw arithmetic is not needed at all.
+   As ordinary blocks they fill their parent exactly — no scrollbar to
+   mis-measure, nothing overflowing, no gap. `max-width` still has to be
+   forced, because that is Hello's rule rather than the browser's.
+   -------------------------------------------------------------------------- */
+
+.site-header,
+.site-footer {
+  display: block;
+  max-width: none !important;
+  width: auto;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  float: none;
+}
+
+.site-header {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.site-footer {
+  padding-top: var(--space-9);
+  padding-bottom: 0;
+}
+
+/* .shell is 1300px wide with a gutter *inside* it, so its content spans 1220
+   and sits 40px narrower each side than an Elementor container set to the
+   same 1300px — the logo and the footer columns end up indented against
+   everything on the page between them.
+
+   Dropping the gutter lines the chrome up with the page exactly. It comes
+   back below 1380px (1300 + two 40px gutters), the point where there is no
+   longer spare room beside the shell, so nothing ever touches the screen
+   edge on a narrow window. */
+.site-header .shell,
+.site-footer .shell {
+  padding-inline: 0;
+}
+
+@media (max-width: 1380px) {
+  .site-header .shell,
+  .site-footer .shell {
+    padding-inline: var(--gutter);
+  }
+}
+
+/* Hello's own header/footer markup, should the parent theme ever render it. */
+.site-header > .site-branding,
+.site-header > .site-navigation {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Elementor Theme Style typography, inside the chrome only
+
+   Elementor writes its Theme Style typography as `.elementor-kit-123 h2 {…}`
+   — specificity (0,1,1), because the kit class sits on <body>. That reaches
+   into the footer and outranks single-class selectors like .footer__heading
+   (0,1,0), which is why footer headings rendered at full H2 display size.
+
+   These put the chrome's own values back at a specificity the kit cannot
+   beat. They are deliberately scoped under .site-header / .site-footer /
+   .drawer, so Elementor keeps full control of everything else on the page.
+   -------------------------------------------------------------------------- */
+
+.site-footer .footer__heading {
+  font-size: var(--fs-base);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-snug);
+  color: var(--white);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+}
+
+.site-footer .footer__intro {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+}
+
+.site-footer .footer__bottom,
+.site-footer .footer__bottom p {
+  font-size: var(--fs-xs);
+  color: var(--n-500);
+}
+
+.site-footer .footer__contact-row {
+  font-size: var(--fs-sm);
+}
+
+.site-footer .footer__links a,
+.site-footer .footer__legal a,
+.site-footer .footer__contact a {
+  font-size: var(--fs-sm);
+  color: var(--text-invert-muted);
+}
+
+.site-footer .footer__links a:hover,
+.site-footer .footer__legal a:hover,
+.site-footer .footer__contact a:hover {
+  color: var(--white);
+}
+
+.site-header .nav__link {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: normal;
+}
+
+.site-header .topbar__item {
+  font-size: var(--fs-xs);
+  color: var(--text-invert-muted);
+}
+
+.drawer .drawer__meta {
+  font-size: var(--fs-xs);
+  color: var(--n-500);
+}
+
+/* Buttons here are links, so Elementor's Link colour can reach them. */
+.site-header .btn--primary,
+.site-footer .btn--primary,
+.drawer .btn--primary,
+.mobile-actions .mobile-actions__book {
+  color: var(--ink);
+}
+
+.site-header .btn--outline-light,
+.site-footer .btn--outline-light,
+.drawer .btn--outline-light {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   5. Admin bar
+
+   The sticky header would come to rest underneath the admin bar, and the
+   drawer is position:fixed at inset 0 and would sit under it too. WordPress
+   switches the bar from 32px to 46px at 782px.
+   -------------------------------------------------------------------------- */
+
+body.admin-bar .site-header,
+body.admin-bar .drawer {
+  top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .site-header,
+  body.admin-bar .drawer {
+    top: 46px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. Site Logo
+
+   When a logo is uploaded under Site Identity it replaces the inline SVG
+   monument mark, and has to sit on the same baseline as the wordmark.
+   -------------------------------------------------------------------------- */
+
+.brand__logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  max-width: 220px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand--lg .brand__logo {
+  height: 52px;
+}
+
+@media (max-width: 560px) {
+  .brand__logo {
+    height: 36px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Fleet shortcode
+
+   Scoped entirely to .nyc-fleet, the shortcode's own wrapper — it cannot
+   reach anything else on the page.
+
+   The filter tabs are <button> elements, so Elementor's Theme Style button
+   rules land on them and fill every tab gold instead of leaving them plain
+   with only the active one inked. Same cause as the hamburger in section 2.
+   -------------------------------------------------------------------------- */
+
+.nyc-fleet .tabs button {
+  appearance: none;
+  -webkit-appearance: none;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.6rem 1.2rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.nyc-fleet .tabs button:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.nyc-fleet .tabs button.is-active,
+.nyc-fleet .tabs button.is-active:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* On a phone the tabs wrapped onto two rows inside a pill-shaped container,
+   which reads as a mistake rather than a design. One row that scrolls sideways
+   is how chip filters are expected to behave at this width, and it keeps the
+   pill shape honest. */
+@media (max-width: 600px) {
+  .nyc-fleet .cluster {
+    display: block;
+  }
+
+  .nyc-fleet .tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nyc-fleet .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nyc-fleet .tabs button {
+    flex: 0 0 auto;
+  }
+}
+
+/* Card text, for the same reason. `.vcard__name` is a single class, so an
+   Elementor Theme Style h3 out-ranks it and resizes every card title. */
+.nyc-fleet .vcard__name {
+  font-size: var(--fs-h4);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+
+.nyc-fleet .vcard__model {
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+
+.nyc-fleet .vcard__quote {
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
+   8. Services shortcode
+
+   Scoped to .nyc-services, the [services] wrapper. The .svc tile writes white
+   text over a photo, so an Elementor Theme Style heading or paragraph colour
+   landing on it is not a small difference — it is white text turning dark on
+   a dark image. Worth pinning explicitly.
+   -------------------------------------------------------------------------- */
+
+.nyc-services .svc h3 {
+  font-size: var(--fs-d3);
+  font-weight: 800;
+  line-height: var(--lh-snug);
+  color: var(--white);
+  margin-bottom: var(--space-3);
+}
+
+.nyc-services .svc p {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-mid);
+  color: rgba(255, 255, 255, 0.76);
+  margin-bottom: var(--space-5);
+  max-width: 42ch;
+}
+
+.nyc-services .svc .svc__label {
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-2xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--ink);
+  max-width: none;
+}
+
+.nyc-services .svc .link {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  color: var(--gold-light);
+}
+
+.nyc-services .svc .link:hover {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   Add your own custom styles below this line.
+
+   Page content width belongs in Elementor → Site Settings → Layout, not here.
+   -------------------------------------------------------------------------- */

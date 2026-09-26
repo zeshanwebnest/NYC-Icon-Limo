@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Elementor global settings reference for NYC Icon Limo: colours, fonts, type scale, buttons, form fields, spacing and custom CSS.">
+<link rel="icon" type="image/svg+xml" href="assets/img/logo/favicon.svg">
+<title>NYC Icon Limo Design Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --d-bg:#f7f5f0;
+  --d-surface:#ffffff;
+  --d-surface-2:#fbf9f4;
+  --d-ink:#16202f;
+  --d-text:#4d5666;
+  --d-muted:#7b8493;
+  --d-line:#e4e0d7;
+  --d-line-2:#d2ccbf;
+  --d-accent:#a4802f;
+  --d-accent-bright:#c9a24d;
+  --d-chip-bg:#f2ede2;
+  --d-chip-ink:#3c3524;
+  --d-code-bg:#131d30;
+  --d-code-ink:#dfe5ef;
+  --d-shadow:0 1px 2px rgba(11,18,32,.04),0 8px 24px rgba(11,18,32,.05);
+  --d-ok:#2f7d5c;
+  --sans:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --d-bg:#0b1220;
+    --d-surface:#121c2e;
+    --d-surface-2:#162136;
+    --d-ink:#f4f1ea;
+    --d-text:#a8b1c1;
+    --d-muted:#7c8699;
+    --d-line:rgba(255,255,255,.10);
+    --d-line-2:rgba(255,255,255,.20);
+    --d-accent:#e3c887;
+    --d-accent-bright:#c9a24d;
+    --d-chip-bg:rgba(201,162,77,.13);
+    --d-chip-ink:#e8d3a3;
+    --d-code-bg:#060b14;
+    --d-code-ink:#dfe5ef;
+    --d-shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    --d-ok:#63c79b;
+  }
+}
+:root[data-theme="dark"]{
+  --d-bg:#0b1220;
+  --d-surface:#121c2e;
+  --d-surface-2:#162136;
+  --d-ink:#f4f1ea;
+  --d-text:#a8b1c1;
+  --d-muted:#7c8699;
+  --d-line:rgba(255,255,255,.10);
+  --d-line-2:rgba(255,255,255,.20);
+  --d-accent:#e3c887;
+  --d-accent-bright:#c9a24d;
+  --d-chip-bg:rgba(201,162,77,.13);
+  --d-chip-ink:#e8d3a3;
+  --d-code-bg:#060b14;
+  --d-code-ink:#dfe5ef;
+  --d-shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  --d-ok:#63c79b;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--d-bg);
+  color:var(--d-text);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{color:var(--d-ink);text-wrap:balance;margin:0;line-height:1.16;letter-spacing:-.02em}
+p{margin:0}
+a{color:var(--d-accent)}
+
+/* ---------- masthead ---------- */
+.masthead{border-bottom:1px solid var(--d-line);background:var(--d-surface)}
+.masthead__in{
+  max-width:1360px;margin-inline:auto;
+  padding:26px 28px 24px;
+  display:flex;flex-wrap:wrap;gap:18px 26px;align-items:flex-end;justify-content:space-between;
+}
+.brandline{display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.brandline .bar{width:26px;height:3px;background:var(--d-accent-bright);border-radius:2px}
+.brandline .nm{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--d-accent)
+}
+.masthead h1{font-size:clamp(25px,2.4vw,34px);font-weight:800;letter-spacing:-.03em}
+.masthead .sub{margin-top:9px;max-width:56ch;font-size:14px;color:var(--d-muted)}
+.stamp{
+  font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--d-muted);
+  border-left:2px solid var(--d-line-2);padding-left:14px;
+}
+.stamp b{color:var(--d-ink);font-weight:500}
+
+/* ---------- shell ---------- */
+.shell{
+  max-width:1360px;margin-inline:auto;
+  padding:0 28px 96px;
+  display:grid;grid-template-columns:232px minmax(0,1fr);gap:48px;
+  align-items:start;
+}
+@media (max-width:1000px){ .shell{grid-template-columns:minmax(0,1fr);gap:0} }
+@media (max-width:520px){ .shell{padding:0 18px 70px} .masthead__in{padding:22px 18px 20px} }
+
+/* ---------- rail ---------- */
+.rail{position:sticky;top:0;padding:34px 0;align-self:start}
+.rail__t{
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--d-muted);margin-bottom:14px;padding-left:2px
+}
+.rail ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px}
+.rail a{
+  display:grid;grid-template-columns:24px 1fr;gap:9px;align-items:baseline;
+  padding:7px 9px;border-radius:6px;text-decoration:none;
+  color:var(--d-text);font-size:13.5px;font-weight:600;
+}
+.rail a .n{font-family:var(--mono);font-size:10.5px;font-weight:500;color:var(--d-muted)}
+.rail a:hover{background:var(--d-surface);color:var(--d-ink)}
+.rail a:hover .n{color:var(--d-accent)}
+@media (max-width:1000px){
+  .rail{position:static;padding:22px 0 6px;border-bottom:1px solid var(--d-line)}
+  .rail ol{flex-direction:row;flex-wrap:wrap;gap:6px}
+  .rail a{background:var(--d-surface);border:1px solid var(--d-line);padding:6px 11px;font-size:12.5px}
+}
+
+/* ---------- main ---------- */
+main{padding-top:34px;min-width:0}
+.panel{margin-bottom:56px;scroll-margin-top:22px}
+.panel__head{margin-bottom:20px}
+.path{
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:7px;
+  font-family:var(--mono);font-size:11px;font-weight:500;color:var(--d-muted);
+  margin-bottom:11px;
+}
+.path i{font-style:normal;color:var(--d-line-2)}
+.path b{color:var(--d-accent);font-weight:700}
+.panel h2{font-size:23px;font-weight:800;display:flex;align-items:baseline;gap:12px}
+.panel h2 .num{
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--d-accent-bright);letter-spacing:.06em;
+}
+.panel__head p{margin-top:9px;max-width:72ch;font-size:14px}
+
+.card{
+  background:var(--d-surface);
+  border:1px solid var(--d-line);
+  border-radius:12px;
+  box-shadow:var(--d-shadow);
+  overflow:hidden;
+}
+.card + .card{margin-top:16px}
+.card__t{
+  padding:13px 18px;border-bottom:1px solid var(--d-line);
+  background:var(--d-surface-2);
+  font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--d-ink);
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;
+}
+.card__t span{font-weight:500;letter-spacing:.02em;text-transform:none;color:var(--d-muted);font-size:12px}
+
+/* ---------- spec rows ---------- */
+.rows{display:flex;flex-direction:column}
+.row{
+  display:grid;grid-template-columns:minmax(140px,.95fr) minmax(0,1.05fr) minmax(0,1.5fr);
+  gap:16px;padding:11px 18px;align-items:baseline;
+  border-top:1px solid var(--d-line);
+}
+.rows > .row:first-child{border-top:0}
+.row > .k{font-weight:700;color:var(--d-ink);font-size:13.5px}
+.row > .v{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.row > .note{font-size:12.5px;color:var(--d-muted);line-height:1.55}
+.row--head{
+  border-top:0;padding-top:9px;padding-bottom:9px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+}
+.row--head > *{font-weight:500 !important;color:var(--d-muted) !important;font-size:10px !important}
+@media (max-width:720px){
+  .row{grid-template-columns:minmax(0,1fr);gap:7px;padding:14px 16px}
+  .row--head{display:none}
+  .row > .note{border-left:2px solid var(--d-line);padding-left:10px}
+}
+
+/* ---------- copy chip ---------- */
+.chip{
+  font-family:var(--mono);font-size:12px;font-weight:500;
+  background:var(--d-chip-bg);color:var(--d-chip-ink);
+  border:1px solid transparent;border-radius:5px;
+  padding:3px 8px;cursor:pointer;
+  font-variant-numeric:tabular-nums;
+  transition:border-color .15s,color .15s;
+  white-space:nowrap;
+}
+.chip:hover{border-color:var(--d-accent-bright)}
+.chip.is-copied{color:var(--d-ok);border-color:var(--d-ok)}
+.chip--plain{background:transparent;border:1px solid var(--d-line-2);color:var(--d-text);cursor:default}
+.chip--plain:hover{border-color:var(--d-line-2)}
+.chip--bp::before{
+  content:attr(data-bp);font-size:9px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--d-muted);margin-right:6px;
+}
+.arrow{color:var(--d-muted);font-size:12px}
+.sw-dot{width:11px;height:11px;border-radius:3px;border:1px solid rgba(128,128,128,.4);display:inline-block;vertical-align:-1px;margin-right:6px}
+
+/* ---------- swatches ---------- */
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:1px;background:var(--d-line)}
+.sw{background:var(--d-surface);padding:13px 14px 12px}
+.sw__chip{height:44px;border-radius:7px;border:1px solid rgba(128,128,128,.28);margin-bottom:10px}
+.sw__nm{font-size:12.5px;font-weight:700;color:var(--d-ink);line-height:1.3}
+.sw__role{font-size:11px;color:var(--d-muted);margin:2px 0 7px;line-height:1.4}
+.sw .chip{font-size:11.5px;padding:2px 7px}
+.sw--sys .sw__nm::after{
+  content:"SYSTEM";font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.12em;
+  color:var(--d-accent);margin-left:7px;vertical-align:1px;
+}
+
+/* ---------- preview ---------- */
+.preview{padding:22px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--d-surface-2)}
+.preview--ink{background:#0b1220}
+.pv-btn{
+  font-family:var(--sans);border:2px solid transparent;border-radius:999px;
+  font-size:15px;font-weight:800;letter-spacing:.01em;padding:15px 27px;
+  display:inline-flex;align-items:center;gap:12px;line-height:1.2;
+}
+.pv-btn--primary{background:#c9a24d;border-color:#c9a24d;color:#0b1220;box-shadow:0 12px 30px rgba(201,162,77,.36)}
+.pv-btn--dark{background:#0b1220;border-color:#0b1220;color:#fff}
+.pv-btn--outline{border-color:#d6d1c6;color:#141922;background:#fff}
+.pv-btn--light{border-color:rgba(255,255,255,.42);color:#fff;background:transparent}
+.pv-btn--sm{padding:11px 20px;font-size:13px}
+.pv-btn--lg{padding:18px 35px;font-size:16px}
+.pv-field{display:flex;flex-direction:column;gap:8px;min-width:220px;flex:1}
+.pv-field label{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#808997}
+.pv-field input{
+  width:100%;padding:14px 16px;background:#faf7f1;border:1px solid #e8e4dc;border-radius:10px;
+  font-family:var(--sans);font-size:15px;font-weight:600;color:#141922;
+}
+.pv-field input::placeholder{color:#a7aeba;font-weight:500}
+.pv-field input:focus{outline:none;background:#fff;border-color:#c9a24d;box-shadow:0 0 0 3px rgba(201,162,77,.18)}
+.pv-note{width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--d-muted)}
+.preview--ink .pv-note{color:rgba(255,255,255,.45)}
+
+/* ---------- type specimen ---------- */
+.spec-row{
+  display:grid;grid-template-columns:minmax(0,1fr) 176px;gap:20px;align-items:center;
+  padding:15px 18px;border-top:1px solid var(--d-line);
+}
+.rows > .spec-row:first-child{border-top:0}
+.spec-row .sample{color:var(--d-ink);line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spec-row .meta{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end}
+@media (max-width:720px){
+  .spec-row{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px 16px}
+  .spec-row .meta{justify-content:flex-start}
+  .spec-row .sample{white-space:normal}
+}
+
+/* ---------- code ---------- */
+.codewrap{position:relative;background:var(--d-code-bg)}
+.codewrap pre{
+  margin:0;padding:44px 18px 20px;overflow-x:auto;
+  font-family:var(--mono);font-size:12px;line-height:1.75;color:var(--d-code-ink);
+  -webkit-overflow-scrolling:touch;
+}
+.codewrap .cm{color:#6f8099}
+.codewrap .pr{color:#e3c887}
+.copy-all{
+  position:absolute;top:10px;right:10px;z-index:2;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.08);color:#e3c887;border:1px solid rgba(227,200,135,.32);
+  border-radius:5px;padding:5px 10px;cursor:pointer;
+}
+.copy-all:hover{background:rgba(227,200,135,.16)}
+.copy-all.is-copied{color:#8fe3bb;border-color:#8fe3bb}
+
+/* ---------- callout ---------- */
+.callout{
+  display:grid;grid-template-columns:3px minmax(0,1fr);
+  background:var(--d-surface);border:1px solid var(--d-line);border-radius:10px;
+  overflow:hidden;margin-top:16px;
+}
+.callout .stripe{background:var(--d-accent-bright)}
+.callout .body{padding:13px 16px 14px}
+.callout h4{font-size:12.5px;font-weight:800;letter-spacing:.02em;margin-bottom:5px}
+.callout p{font-size:13px;color:var(--d-text)}
+.callout p + p{margin-top:7px}
+
+/* ---------- checklist ---------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{
+  counter-increment:s;
+  display:grid;grid-template-columns:26px minmax(0,1fr);gap:13px;align-items:baseline;
+  padding:12px 18px;border-top:1px solid var(--d-line);font-size:13.5px;
+}
+.steps li:first-child{border-top:0}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--d-accent);letter-spacing:.06em;
+}
+.steps b{color:var(--d-ink);font-weight:700}
+.inl{
+  font-family:var(--mono);font-size:11.5px;background:var(--d-chip-bg);color:var(--d-chip-ink);
+  padding:1.5px 6px;border-radius:4px;
+}
+
+.foot{max-width:1360px;margin-inline:auto;padding:0 28px 60px;font-size:12.5px;color:var(--d-muted)}
+.foot .rule{height:1px;background:var(--d-line);margin-bottom:18px}
+.foot b{color:var(--d-text);font-weight:600}
+:focus-visible{outline:2px solid var(--d-accent-bright);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__in">
+    <div>
+      <div class="brandline"><span class="bar"></span><span class="nm">NYC Icon Limo</span></div>
+      <h1>Elementor Global Settings Kit</h1>
+      <p class="sub">Every colour, font, size and button state from the built site, written out as the exact values to type into Elementor. Click any value to copy it.</p>
+    </div>
+    <div class="stamp">
+      Typeface &nbsp;<b>Plus Jakarta Sans</b><br>
+      Accent &nbsp;<b>#c9a24d</b><br>
+      Content width &nbsp;<b>1300 px</b><br>
+      Source &nbsp;<b>assets/css/variables.css</b>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="rail__t">Set up in this order</div>
+    <ol>
+      <li><a href="#start"><span class="n">00</span><span>Before you start</span></a></li>
+      <li><a href="#colors"><span class="n">01</span><span>Global Colors</span></a></li>
+      <li><a href="#fonts"><span class="n">02</span><span>Global Fonts</span></a></li>
+      <li><a href="#type"><span class="n">03</span><span>Typography</span></a></li>
+      <li><a href="#buttons"><span class="n">04</span><span>Buttons</span></a></li>
+      <li><a href="#forms"><span class="n">05</span><span>Form Fields</span></a></li>
+      <li><a href="#images"><span class="n">06</span><span>Images</span></a></li>
+      <li><a href="#layout"><span class="n">07</span><span>Layout &amp; Breakpoints</span></a></li>
+      <li><a href="#spacing"><span class="n">08</span><span>Section Spacing</span></a></li>
+      <li><a href="#surface"><span class="n">09</span><span>Radius &amp; Shadow</span></a></li>
+      <li><a href="#css"><span class="n">10</span><span>Custom CSS</span></a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section class="panel" id="start">
+      <div class="panel__head">
+        <div class="path"><b>Elementor</b><i>&rsaquo;</i>Hamburger menu<i>&rsaquo;</i>Site Settings</div>
+        <h2><span class="num">00</span>Before you start</h2>
+        <p>Do these four things once, on any page, before you open a single widget. Everything after this sheet assumes they are done.</p>
+      </div>
+      <div class="card">
+        <ol class="steps">
+          <li><span><b>Install Plus Jakarta Sans.</b> Elementor does not ship it. Either enable Google Fonts under <span class="inl">Elementor &rsaquo; Settings &rsaquo; Features</span> and pick it in any font dropdown, or upload the family under <span class="inl">Elementor &rsaquo; Custom Fonts</span>. You need weights <span class="inl">400, 500, 600, 700, 800</span> &mdash; the design uses all five.</span></li>
+          <li><span><b>Turn off the theme's own styling.</b> <span class="inl">Elementor &rsaquo; Settings &rsaquo; General</span> &rarr; tick <b>Disable Default Colors</b> and <b>Disable Default Fonts</b>. Without this your theme fights every value on this sheet.</span></li>
+          <li><span><b>Set Global Colors and Global Fonts first</b> (panels 01 and 02). Everything afterwards should point at those globals, never a raw hex typed into a widget. Then a brand tweak is one edit instead of two hundred.</span></li>
+          <li><span><b>Use Containers, not Sections.</b> <span class="inl">Elementor &rsaquo; Settings &rsaquo; Features &rsaquo; Flexbox Container: Active</span>. The layout is CSS grid and flex throughout &mdash; containers map to it one-to-one, legacy sections do not.</span></li>
+        </ol>
+      </div>
+      <div class="callout">
+        <div class="stripe"></div>
+        <div class="body">
+          <h4>About the three values on each size</h4>
+          <p>The site sizes type fluidly with <span class="inl">clamp()</span>. Elementor's fields take one number per device, so every size here is given as <b>Desktop / Tablet / Mobile</b> &mdash; measured at 1440&nbsp;px, 900&nbsp;px and 390&nbsp;px, which is where those breakpoints actually land. Enter all three; the middle one is the one people forget.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="colors">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Global Colors</div>
+        <h2><span class="num">01</span>Global Colors</h2>
+        <p>Rename Elementor's four system colours to the values below &mdash; do not delete them, widgets are wired to those four slots. Then add the rest as custom colours using these exact names, so the picker list stays readable six months from now.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__t">The four system slots <span>Rename these, don't delete them</span></div>
+        <div class="swatches">
+          <div class="sw sw--sys"><div class="sw__chip" style="background:#0b1220"></div><div class="sw__nm">Primary</div><div class="sw__role">Ink &mdash; headings, dark sections, footer</div><button class="chip" data-copy="#0b1220">#0b1220</button></div>
+          <div class="sw sw--sys"><div class="sw__chip" style="background:#132038"></div><div class="sw__nm">Secondary</div><div class="sw__role">Navy &mdash; alternate dark bands</div><button class="chip" data-copy="#132038">#132038</button></div>
+          <div class="sw sw--sys"><div class="sw__chip" style="background:#5d6675"></div><div class="sw__nm">Text</div><div class="sw__role">Body copy grey</div><button class="chip" data-copy="#5d6675">#5d6675</button></div>
+          <div class="sw sw--sys"><div class="sw__chip" style="background:#c9a24d"></div><div class="sw__nm">Accent</div><div class="sw__role">Gold &mdash; CTAs, links, highlights</div><button class="chip" data-copy="#c9a24d">#c9a24d</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Golds <span>Add as custom colours</span></div>
+        <div class="swatches">
+          <div class="sw"><div class="sw__chip" style="background:#c9a24d"></div><div class="sw__nm">Gold</div><div class="sw__role">The brand gold. Buttons, rules, icons</div><button class="chip" data-copy="#c9a24d">#c9a24d</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#e3c887"></div><div class="sw__nm">Gold Light</div><div class="sw__role">Button hover, links on dark</div><button class="chip" data-copy="#e3c887">#e3c887</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#f3e6c8"></div><div class="sw__nm">Gold Pale</div><div class="sw__role">Tinted panels</div><button class="chip" data-copy="#f3e6c8">#f3e6c8</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#a4802f"></div><div class="sw__nm">Gold Deep</div><div class="sw__role">Gold text on light &mdash; the readable one</div><button class="chip" data-copy="#a4802f">#a4802f</button></div>
+          <div class="sw"><div class="sw__chip" style="background:rgba(201,162,77,.12);border-style:dashed"></div><div class="sw__nm">Gold Tint</div><div class="sw__role">Badge fill, highlight swash</div><button class="chip" data-copy="rgba(201, 162, 77, 0.12)">rgba(201,162,77,.12)</button></div>
+          <div class="sw"><div class="sw__chip" style="background:rgba(201,162,77,.2);border-style:dashed"></div><div class="sw__nm">Gold Tint 2</div><div class="sw__role">Badge border, marker underline</div><button class="chip" data-copy="rgba(201, 162, 77, 0.2)">rgba(201,162,77,.2)</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Inks &amp; navies <span>Dark surfaces</span></div>
+        <div class="swatches">
+          <div class="sw"><div class="sw__chip" style="background:#0b1220"></div><div class="sw__nm">Ink</div><div class="sw__role">Primary dark background</div><button class="chip" data-copy="#0b1220">#0b1220</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#101a2c"></div><div class="sw__nm">Ink 2</div><div class="sw__role">Raised panel on ink</div><button class="chip" data-copy="#101a2c">#101a2c</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#17233a"></div><div class="sw__nm">Ink 3</div><div class="sw__role">Dark button hover</div><button class="chip" data-copy="#17233a">#17233a</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#1f2d47"></div><div class="sw__nm">Ink 4</div><div class="sw__role">Borders and dividers on ink</div><button class="chip" data-copy="#1f2d47">#1f2d47</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#132038"></div><div class="sw__nm">Navy</div><div class="sw__role">Second dark band, for variety</div><button class="chip" data-copy="#132038">#132038</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#1b2c4a"></div><div class="sw__nm">Navy Soft</div><div class="sw__role">Cards sitting on navy</div><button class="chip" data-copy="#1b2c4a">#1b2c4a</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Light surfaces &amp; lines</div>
+        <div class="swatches">
+          <div class="sw"><div class="sw__chip" style="background:#ffffff"></div><div class="sw__nm">White</div><div class="sw__role">Default page background</div><button class="chip" data-copy="#ffffff">#ffffff</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#faf7f1"></div><div class="sw__nm">Cream</div><div class="sw__role">Alternating section background, input fill</div><button class="chip" data-copy="#faf7f1">#faf7f1</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#f3ecdf"></div><div class="sw__nm">Cream 2</div><div class="sw__role">Deeper warm panel</div><button class="chip" data-copy="#f3ecdf">#f3ecdf</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#e8e4dc"></div><div class="sw__nm">Line</div><div class="sw__role">Default border &mdash; warm, not grey</div><button class="chip" data-copy="#e8e4dc">#e8e4dc</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#d6d1c6"></div><div class="sw__nm">Line Strong</div><div class="sw__role">Outline button border</div><button class="chip" data-copy="#d6d1c6">#d6d1c6</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#f0b429"></div><div class="sw__nm">Star</div><div class="sw__role">Review stars only</div><button class="chip" data-copy="#f0b429">#f0b429</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Neutrals <span>Warm-biased, so they sit comfortably beside the cream</span></div>
+        <div class="swatches">
+          <div class="sw"><div class="sw__chip" style="background:#141922"></div><div class="sw__nm">N-900</div><div class="sw__role">Heading text on light</div><button class="chip" data-copy="#141922">#141922</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#242b38"></div><div class="sw__nm">N-800</div><div class="sw__role">Strong body text</div><button class="chip" data-copy="#242b38">#242b38</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#3d4553"></div><div class="sw__nm">N-700</div><div class="sw__role">Emphasis copy</div><button class="chip" data-copy="#3d4553">#3d4553</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#5d6675"></div><div class="sw__nm">N-600</div><div class="sw__role">Body paragraphs &mdash; the default</div><button class="chip" data-copy="#5d6675">#5d6675</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#808997"></div><div class="sw__nm">N-500</div><div class="sw__role">Field labels, captions</div><button class="chip" data-copy="#808997">#808997</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#a7aeba"></div><div class="sw__nm">N-400</div><div class="sw__role">Placeholder text</div><button class="chip" data-copy="#a7aeba">#a7aeba</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#c9cfd8"></div><div class="sw__nm">N-300</div><div class="sw__role">Disabled state</div><button class="chip" data-copy="#c9cfd8">#c9cfd8</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#e5e8ed"></div><div class="sw__nm">N-200</div><div class="sw__role">Cool divider</div><button class="chip" data-copy="#e5e8ed">#e5e8ed</button></div>
+          <div class="sw"><div class="sw__chip" style="background:#f2f4f7"></div><div class="sw__nm">N-100</div><div class="sw__role">Cool panel fill</div><button class="chip" data-copy="#f2f4f7">#f2f4f7</button></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">On dark backgrounds <span>Never plain white-on-ink for body copy</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Role</div><div>Value</div><div>Where</div></div>
+          <div class="row"><div class="k">Heading on dark</div><div class="v"><button class="chip" data-copy="#ffffff"><span class="sw-dot" style="background:#fff"></span>#ffffff</button></div><div class="note">Full white. Headings only.</div></div>
+          <div class="row"><div class="k">Body on dark</div><div class="v"><button class="chip" data-copy="rgba(255, 255, 255, 0.66)">rgba(255,255,255,.66)</button></div><div class="note">Paragraphs inside ink or navy sections. Softer than white, still passes contrast.</div></div>
+          <div class="row"><div class="k">Border on dark</div><div class="v"><button class="chip" data-copy="rgba(255, 255, 255, 0.12)">rgba(255,255,255,.12)</button></div><div class="note">Card edges, dividers.</div></div>
+          <div class="row"><div class="k">Ghost button on dark</div><div class="v"><button class="chip" data-copy="rgba(255, 255, 255, 0.42)">rgba(255,255,255,.42)</button></div><div class="note">Outline colour for a light-outline button.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="fonts">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Global Fonts</div>
+        <h2><span class="num">02</span>Global Fonts</h2>
+        <p>One family throughout &mdash; <b>Plus Jakarta Sans</b> &mdash; separated by weight rather than by typeface. The four system slots differ only in weight; that is the whole type system.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">The four system slots</div>
+        <div class="rows">
+          <div class="row row--head"><div>Slot</div><div>Family &amp; weight</div><div>Used for</div></div>
+          <div class="row"><div class="k">Primary</div><div class="v"><button class="chip" data-copy="Plus Jakarta Sans">Plus Jakarta Sans</button><button class="chip" data-copy="800">800</button></div><div class="note">H1, H2 &mdash; the heavy display weight that carries the brand.</div></div>
+          <div class="row"><div class="k">Secondary</div><div class="v"><button class="chip" data-copy="Plus Jakarta Sans">Plus Jakarta Sans</button><button class="chip" data-copy="700">700</button></div><div class="note">H3, H4, H5 and anything bold inside body copy.</div></div>
+          <div class="row"><div class="k">Text</div><div class="v"><button class="chip" data-copy="Plus Jakarta Sans">Plus Jakarta Sans</button><button class="chip" data-copy="400">400</button></div><div class="note">All body copy.</div></div>
+          <div class="row"><div class="k">Accent</div><div class="v"><button class="chip" data-copy="Plus Jakarta Sans">Plus Jakarta Sans</button><button class="chip" data-copy="800">800</button></div><div class="note">Buttons, eyebrows, badges, form labels, arrow links.</div></div>
+          <div class="row"><div class="k">Fallback stack</div><div class="v"><button class="chip" data-copy="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">system stack</button></div><div class="note">Click to copy. Elementor sets this automatically for Google Fonts; you only need it in Custom CSS.</div></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="stripe"></div>
+        <div class="body">
+          <h4>Weight 600 and 500 have exactly one job</h4>
+          <p>Form input text is <b>600</b> and placeholder text is <b>500</b> &mdash; heavier than you would expect, and deliberate: it makes a booking form feel solid and filled-in rather than tentative. Load both weights even though nothing else on the site uses them.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="type">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Theme Style<i>&rsaquo;</i>Typography</div>
+        <h2><span class="num">03</span>Typography</h2>
+        <p>Set each heading level here once and every Heading widget inherits it. Sizes read <b>D / T / M</b> for Desktop, Tablet and Mobile &mdash; enter all three using Elementor's device toggle on the Size field.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Heading sizes <span>Theme Style &rsaquo; Typography &rsaquo; H1&ndash;H6</span></div>
+        <div class="rows">
+          <div class="spec-row">
+            <div class="sample" style="font-size:42px;font-weight:800;letter-spacing:-.03em">Arrive the way New York expects</div>
+            <div class="meta">
+              <button class="chip chip--plain">Hero</button>
+              <button class="chip chip--bp" data-bp="D" data-copy="80">80px</button>
+              <button class="chip chip--bp" data-bp="T" data-copy="62">62px</button>
+              <button class="chip chip--bp" data-bp="M" data-copy="42">42px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:34px;font-weight:800;letter-spacing:-.03em">Private chauffeur service</div>
+            <div class="meta">
+              <button class="chip chip--plain">H1</button>
+              <button class="chip chip--bp" data-bp="D" data-copy="58">58px</button>
+              <button class="chip chip--bp" data-bp="T" data-copy="46">46px</button>
+              <button class="chip chip--bp" data-bp="M" data-copy="34">34px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:29px;font-weight:800;letter-spacing:-.03em">A fleet kept immaculate</div>
+            <div class="meta">
+              <button class="chip chip--plain">H2</button>
+              <button class="chip chip--bp" data-bp="D" data-copy="46">46px</button>
+              <button class="chip chip--bp" data-bp="T" data-copy="39">39px</button>
+              <button class="chip chip--bp" data-bp="M" data-copy="29">29px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:23px;font-weight:700;letter-spacing:-.015em">JFK, LaGuardia &amp; Newark</div>
+            <div class="meta">
+              <button class="chip chip--plain">H3</button>
+              <button class="chip chip--bp" data-bp="D" data-copy="30">30px</button>
+              <button class="chip chip--bp" data-bp="T" data-copy="26">26px</button>
+              <button class="chip chip--bp" data-bp="M" data-copy="22">22px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:19px;font-weight:700;letter-spacing:-.015em">Premium Sedan &mdash; up to 3 guests</div>
+            <div class="meta">
+              <button class="chip chip--plain">H4</button>
+              <button class="chip chip--bp" data-bp="D" data-copy="21">21px</button>
+              <button class="chip chip--bp" data-bp="T" data-copy="20">20px</button>
+              <button class="chip chip--bp" data-bp="M" data-copy="18">18px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:16px;font-weight:700;letter-spacing:-.015em">Meet &amp; greet included</div>
+            <div class="meta">
+              <button class="chip chip--plain">H5</button>
+              <button class="chip chip--bp" data-bp="ALL" data-copy="16">16px</button>
+            </div>
+          </div>
+          <div class="spec-row">
+            <div class="sample" style="font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase">Reserve 24 / 7</div>
+            <div class="meta">
+              <button class="chip chip--plain">H6 &middot; eyebrow</button>
+              <button class="chip chip--bp" data-bp="ALL" data-copy="11">11px</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Weight, line height &amp; letter spacing <span>Per heading level</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Level</div><div>Weight &middot; Line height &middot; Letter spacing</div><div>Notes</div></div>
+          <div class="row"><div class="k">Hero / H1</div><div class="v"><button class="chip" data-copy="800">800</button><button class="chip" data-copy="1.08">1.08</button><button class="chip" data-copy="-0.025em">&minus;0.025em</button></div><div class="note">Very tight leading &mdash; display sizes need it or the lines drift apart. In px: &minus;1.45 at 58, &minus;2 at 80.</div></div>
+          <div class="row"><div class="k">H2</div><div class="v"><button class="chip" data-copy="800">800</button><button class="chip" data-copy="1.14">1.14</button><button class="chip" data-copy="-0.025em">&minus;0.025em</button></div><div class="note">In px: &minus;1.15 at 46.</div></div>
+          <div class="row"><div class="k">H3</div><div class="v"><button class="chip" data-copy="700">700</button><button class="chip" data-copy="1.2">1.2</button><button class="chip" data-copy="-0.015em">&minus;0.015em</button></div><div class="note">Weight drops to 700 here. In px: &minus;0.45 at 30.</div></div>
+          <div class="row"><div class="k">H4 / H5</div><div class="v"><button class="chip" data-copy="700">700</button><button class="chip" data-copy="1.2">1.2</button><button class="chip" data-copy="-0.015em">&minus;0.015em</button></div><div class="note">Card titles and list headings.</div></div>
+          <div class="row"><div class="k">H6 &middot; eyebrow</div><div class="v"><button class="chip" data-copy="800">800</button><button class="chip" data-copy="1.45">1.45</button><button class="chip" data-copy="0.05em">+0.05em</button></div><div class="note">Uppercase. Colour <button class="chip" data-copy="#a4802f">#a4802f</button> on light, <button class="chip" data-copy="#e3c887">#e3c887</button> on dark.</div></div>
+          <div class="row"><div class="k">Heading colour</div><div class="v"><button class="chip" data-copy="#141922"><span class="sw-dot" style="background:#141922"></span>#141922</button></div><div class="note">On dark sections, switch to <button class="chip" data-copy="#ffffff">#ffffff</button>.</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Body &amp; links <span>Theme Style &rsaquo; Typography &rsaquo; Body / Link</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Setting</div><div>Value</div><div>Notes</div></div>
+          <div class="row"><div class="k">Body size</div><div class="v"><button class="chip" data-copy="16">16px</button></div><div class="note">Same on every device. Do not shrink it on mobile.</div></div>
+          <div class="row"><div class="k">Body weight</div><div class="v"><button class="chip" data-copy="400">400</button></div><div class="note">Global font <b>Text</b>.</div></div>
+          <div class="row"><div class="k">Body line height</div><div class="v"><button class="chip" data-copy="1.72">1.72</button></div><div class="note">Generous. This is what makes long service descriptions readable &mdash; don't tighten it.</div></div>
+          <div class="row"><div class="k">Body colour</div><div class="v"><button class="chip" data-copy="#5d6675"><span class="sw-dot" style="background:#5d6675"></span>#5d6675</button></div><div class="note">Paragraphs are grey, not near-black. Headings carry the contrast.</div></div>
+          <div class="row"><div class="k">Lead paragraph</div><div class="v"><button class="chip" data-copy="17">17px</button><button class="chip" data-copy="1.72">1.72</button></div><div class="note">The intro under a heading. One step up from body, same leading.</div></div>
+          <div class="row"><div class="k">Small text</div><div class="v"><button class="chip" data-copy="15">15px</button></div><div class="note">Card copy, button labels, form inputs.</div></div>
+          <div class="row"><div class="k">Caption</div><div class="v"><button class="chip" data-copy="13">13px</button><button class="chip" data-copy="#808997"><span class="sw-dot" style="background:#808997"></span>#808997</button></div><div class="note">Fine print, form notes, footnotes.</div></div>
+          <div class="row"><div class="k">Micro / label</div><div class="v"><button class="chip" data-copy="11">11px</button><button class="chip" data-copy="800">800</button><button class="chip" data-copy="0.05em">+0.05em</button></div><div class="note">Uppercase. Badges and field labels.</div></div>
+          <div class="row"><div class="k">Link &mdash; normal</div><div class="v"><button class="chip" data-copy="#a4802f"><span class="sw-dot" style="background:#a4802f"></span>#a4802f</button><button class="chip" data-copy="800">800</button></div><div class="note">Gold Deep, not the bright gold &mdash; bright gold fails contrast on white.</div></div>
+          <div class="row"><div class="k">Link &mdash; hover</div><div class="v"><button class="chip" data-copy="#0b1220"><span class="sw-dot" style="background:#0b1220"></span>#0b1220</button></div><div class="note">Darkens to ink. On dark sections: <button class="chip" data-copy="#e3c887">#e3c887</button> <span class="arrow">&rarr;</span> <button class="chip" data-copy="#ffffff">#ffffff</button></div></div>
+          <div class="row"><div class="k">Focus ring</div><div class="v"><button class="chip" data-copy="2px solid #c9a24d">2px solid #c9a24d</button><button class="chip" data-copy="3px">offset 3px</button></div><div class="note">Keyboard accessibility. Never set <span class="inl">outline: none</span> without a replacement.</div></div>
+          <div class="row"><div class="k">Text selection</div><div class="v"><button class="chip" data-copy="#c9a24d">bg #c9a24d</button><button class="chip" data-copy="#0b1220">text #0b1220</button></div><div class="note">Set in Custom CSS (panel 10). A small touch, but people notice it.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="buttons">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Theme Style<i>&rsaquo;</i>Buttons</div>
+        <h2><span class="num">04</span>Buttons</h2>
+        <p>Theme Style holds one button design &mdash; make it the gold primary. The other three variants live in Custom CSS (panel 10) and you apply them per widget with a CSS class.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Shared by every button</div>
+        <div class="rows">
+          <div class="row row--head"><div>Setting</div><div>Value</div><div>Notes</div></div>
+          <div class="row"><div class="k">Typography</div><div class="v"><button class="chip" data-copy="15">15px</button><button class="chip" data-copy="800">800</button><button class="chip" data-copy="0.01em">+0.01em</button></div><div class="note">Global font <b>Accent</b>. Sentence case &mdash; never all-caps buttons.</div></div>
+          <div class="row"><div class="k">Border radius</div><div class="v"><button class="chip" data-copy="999">999px</button></div><div class="note">A full pill. This is the most recognisable thing about the design &mdash; keep it on every button.</div></div>
+          <div class="row"><div class="k">Border width</div><div class="v"><button class="chip" data-copy="2">2px</button></div><div class="note">Always 2px, transparent where there is no visible outline. Keeps filled and outline buttons the same height.</div></div>
+          <div class="row"><div class="k">Padding</div><div class="v"><button class="chip" data-copy="15">15px</button><span class="arrow">/</span><button class="chip" data-copy="27">27px</button></div><div class="note">Top &amp; bottom 15, left &amp; right 27.</div></div>
+          <div class="row"><div class="k">Padding &mdash; mobile</div><div class="v"><button class="chip" data-copy="14">14px</button><span class="arrow">/</span><button class="chip" data-copy="21">21px</button></div><div class="note">Text drops to 13px under 480px wide.</div></div>
+          <div class="row"><div class="k">Icon spacing</div><div class="v"><button class="chip" data-copy="12">gap 12px</button><button class="chip" data-copy="17">icon 17px</button></div><div class="note">Elementor calls this Icon Spacing.</div></div>
+          <div class="row"><div class="k">Hover motion</div><div class="v"><button class="chip" data-copy="translateY(-2px)">translateY(&minus;2px)</button><button class="chip" data-copy="200ms">200ms</button></div><div class="note">Lifts 2px. Easing <button class="chip" data-copy="cubic-bezier(0.22, 1, 0.36, 1)">cubic-bezier(.22,1,.36,1)</button></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Primary &mdash; gold <span>This is the one that goes in Theme Style</span></div>
+        <div class="preview">
+          <span class="pv-btn pv-btn--primary">Reserve your car</span>
+          <span class="pv-btn pv-btn--primary pv-btn--sm">Small</span>
+          <span class="pv-btn pv-btn--primary pv-btn--lg">Large</span>
+        </div>
+        <div class="rows">
+          <div class="row row--head"><div>State</div><div>Values</div><div>Notes</div></div>
+          <div class="row"><div class="k">Normal</div><div class="v"><button class="chip" data-copy="#c9a24d"><span class="sw-dot" style="background:#c9a24d"></span>bg #c9a24d</button><button class="chip" data-copy="#0b1220"><span class="sw-dot" style="background:#0b1220"></span>text #0b1220</button></div><div class="note">Dark ink text on gold, not white &mdash; white on gold fails contrast.</div></div>
+          <div class="row"><div class="k">Hover</div><div class="v"><button class="chip" data-copy="#e3c887"><span class="sw-dot" style="background:#e3c887"></span>bg #e3c887</button><button class="chip" data-copy="#0b1220">text #0b1220</button></div><div class="note">Lightens rather than darkens. Border matches the background in both states.</div></div>
+          <div class="row"><div class="k">Box shadow</div><div class="v"><button class="chip" data-copy="0 12px 30px rgba(201, 162, 77, 0.36)">0 12px 30px rgba(201,162,77,.36)</button></div><div class="note">A gold glow, not a grey drop shadow. Only the primary button gets it.</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card__t">Variants <span>Applied with a CSS class from panel 10</span></div>
+        <div class="preview">
+          <span class="pv-btn pv-btn--dark">Call +1 917 952 4031</span>
+          <span class="pv-btn pv-btn--outline">View the fleet</span>
+          <span class="pv-note">btn--dark &nbsp;&middot;&nbsp; btn--outline &nbsp;&mdash;&nbsp; on light sections</span>
+        </div>
+        <div class="preview preview--ink">
+          <span class="pv-btn pv-btn--light">Get a quote</span>
+          <span class="pv-btn pv-btn--primary">Reserve now</span>
+          <span class="pv-note">btn--outline-light &nbsp;&mdash;&nbsp; on ink and navy sections</span>
+        </div>
+        <div class="rows">
+          <div class="row row--head"><div>CSS class</div><div>Normal &rarr; hover</div><div>Where to use it</div></div>
+          <div class="row"><div class="k">btn--dark</div><div class="v"><button class="chip" data-copy="#0b1220">#0b1220</button><span class="arrow">&rarr;</span><button class="chip" data-copy="#17233a">#17233a</button><button class="chip" data-copy="#ffffff">text #fff</button></div><div class="note">Secondary action beside a gold primary &mdash; typically the phone-number button.</div></div>
+          <div class="row"><div class="k">btn--outline</div><div class="v"><button class="chip" data-copy="#d6d1c6">border #d6d1c6</button><span class="arrow">&rarr;</span><button class="chip" data-copy="#0b1220">fills #0b1220</button></div><div class="note">Tertiary on light. Transparent until hovered, then fills ink with white text.</div></div>
+          <div class="row"><div class="k">btn--outline-light</div><div class="v"><button class="chip" data-copy="rgba(255, 255, 255, 0.42)">border white 42%</button><span class="arrow">&rarr;</span><button class="chip" data-copy="#ffffff">fills #ffffff</button></div><div class="note">The only outline button allowed on ink or navy. Fills white, text goes ink.</div></div>
+          <div class="row"><div class="k">btn--sm</div><div class="v"><button class="chip" data-copy="11px 20px">11px 20px</button><button class="chip" data-copy="13">13px</button></div><div class="note">Header nav, card footers.</div></div>
+          <div class="row"><div class="k">btn--lg</div><div class="v"><button class="chip" data-copy="18px 35px">18px 35px</button><button class="chip" data-copy="16">16px</button></div><div class="note">Hero and booking form submit. On mobile: 16px 24px, 15px text.</div></div>
+          <div class="row"><div class="k">btn--block</div><div class="v"><button class="chip" data-copy="100%">width 100%</button></div><div class="note">Form submit buttons on mobile.</div></div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="stripe"></div>
+        <div class="body">
+          <h4>How to apply a variant in Elementor</h4>
+          <p>Select the Button widget &rarr; <b>Advanced</b> tab &rarr; <b>CSS Classes</b> &rarr; type <span class="inl">btn btn--dark</span> with no dot and a space between them. The rules in panel 10 do the rest.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="forms">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Theme Style<i>&rsaquo;</i>Form Fields</div>
+        <h2><span class="num">05</span>Form Fields</h2>
+        <p>The booking form is the commercial heart of the site, so its fields are styled deliberately: a warm cream fill instead of white, and a gold focus ring that tells the guest exactly where they are.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">Live preview <span>Click into a field to see the focus state</span></div>
+        <div class="preview">
+          <div class="pv-field">
+            <label for="pv-pickup">Pickup location</label>
+            <input id="pv-pickup" type="text" placeholder="JFK Terminal 4, Queens">
+          </div>
+          <div class="pv-field">
+            <label for="pv-when">Date &amp; time</label>
+            <input id="pv-when" type="text" placeholder="Tonight, 7:30 PM">
+          </div>
+        </div>
+        <div class="rows">
+          <div class="row row--head"><div>Setting</div><div>Value</div><div>Notes</div></div>
+          <div class="row"><div class="k">Label</div><div class="v"><button class="chip" data-copy="11">11px</button><button class="chip" data-copy="800">800</button><button class="chip" data-copy="0.05em">+0.05em</button><button class="chip" data-copy="#808997"><span class="sw-dot" style="background:#808997"></span>#808997</button></div><div class="note">Uppercase, above the field, 8px gap.</div></div>
+          <div class="row"><div class="k">Field background</div><div class="v"><button class="chip" data-copy="#faf7f1"><span class="sw-dot" style="background:#faf7f1"></span>#faf7f1</button></div><div class="note">Cream, not white &mdash; the field reads as an inset well.</div></div>
+          <div class="row"><div class="k">Field border</div><div class="v"><button class="chip" data-copy="1px">1px</button><button class="chip" data-copy="#e8e4dc"><span class="sw-dot" style="background:#e8e4dc"></span>#e8e4dc</button></div><div class="note">Solid, all four sides.</div></div>
+          <div class="row"><div class="k">Field radius</div><div class="v"><button class="chip" data-copy="10">10px</button></div><div class="note">Softly rounded. Inputs are <em>not</em> pills &mdash; only buttons are.</div></div>
+          <div class="row"><div class="k">Field padding</div><div class="v"><button class="chip" data-copy="14px 16px">14px 16px</button></div><div class="note">Select dropdowns get 36px on the right to clear the chevron.</div></div>
+          <div class="row"><div class="k">Field text</div><div class="v"><button class="chip" data-copy="15">15px</button><button class="chip" data-copy="600">600</button><button class="chip" data-copy="#141922"><span class="sw-dot" style="background:#141922"></span>#141922</button></div><div class="note">Semi-bold, deliberately &mdash; see panel 02.</div></div>
+          <div class="row"><div class="k">Placeholder</div><div class="v"><button class="chip" data-copy="#a7aeba"><span class="sw-dot" style="background:#a7aeba"></span>#a7aeba</button><button class="chip" data-copy="500">500</button></div><div class="note">Write real examples as placeholders ("JFK Terminal 4"), not "Enter pickup location".</div></div>
+          <div class="row"><div class="k">Focus</div><div class="v"><button class="chip" data-copy="#ffffff">bg #ffffff</button><button class="chip" data-copy="#c9a24d">border #c9a24d</button><button class="chip" data-copy="0 0 0 3px rgba(201, 162, 77, 0.18)">ring 3px gold 18%</button></div><div class="note">The background brightens to white too, so the active field lifts off the card.</div></div>
+          <div class="row"><div class="k">Error</div><div class="v"><button class="chip" data-copy="#c4544a"><span class="sw-dot" style="background:#c4544a"></span>border #c4544a</button><button class="chip" data-copy="#fdf5f4"><span class="sw-dot" style="background:#fdf5f4"></span>bg #fdf5f4</button></div><div class="note">A muted brick red that belongs to the warm palette, not a fire-engine red.</div></div>
+          <div class="row"><div class="k">Textarea</div><div class="v"><button class="chip" data-copy="130">min-height 130px</button></div><div class="note">Resize vertical only.</div></div>
+          <div class="row"><div class="k">Row gap</div><div class="v"><button class="chip" data-copy="24">24px</button></div><div class="note">Two columns on desktop, one column under 700px.</div></div>
+          <div class="row"><div class="k">Submit button</div><div class="v"><button class="chip" data-copy="btn btn--primary btn--lg btn--block">btn--primary btn--lg</button></div><div class="note">Add <span class="inl">btn--block</span> for full width on mobile.</div></div>
+          <div class="row"><div class="k">Form note</div><div class="v"><button class="chip" data-copy="13">13px</button><button class="chip" data-copy="#808997"><span class="sw-dot" style="background:#808997"></span>#808997</button></div><div class="note">The reassurance line under the button &mdash; 16px above it.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="images">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Theme Style<i>&rsaquo;</i>Images</div>
+        <h2><span class="num">06</span>Images</h2>
+        <p>Fleet photography and interior shots carry the whole premium impression, so they get consistent corners and a real shadow.</p>
+      </div>
+      <div class="card">
+        <div class="rows">
+          <div class="row row--head"><div>Setting</div><div>Value</div><div>Notes</div></div>
+          <div class="row"><div class="k">Border radius</div><div class="v"><button class="chip" data-copy="16">16px</button></div><div class="note">Default for inline images. Feature images and hero media use 22px.</div></div>
+          <div class="row"><div class="k">Box shadow</div><div class="v"><button class="chip" data-copy="0 16px 38px rgba(11, 18, 32, 0.1)">0 16px 38px rgba(11,18,32,.1)</button></div><div class="note">A navy-tinted shadow. Never pure black.</div></div>
+          <div class="row"><div class="k">Fleet card ratio</div><div class="v"><button class="chip" data-copy="16 / 10">16 / 10</button></div><div class="note">Vehicle shots. Use <span class="inl">object-fit: cover</span> so cards stay level.</div></div>
+          <div class="row"><div class="k">Hero media ratio</div><div class="v"><button class="chip" data-copy="16 / 9">16 / 9</button><span class="arrow">/</span><button class="chip" data-copy="4 / 5">4 / 5</button></div><div class="note">Wide on desktop, portrait on mobile.</div></div>
+          <div class="row"><div class="k">Dark overlay on hero</div><div class="v"><button class="chip" data-copy="rgba(11, 18, 32, 0.62)">rgba(11,18,32,.62)</button></div><div class="note">Needed for white headline text to hold over a street scene.</div></div>
+          <div class="row"><div class="k">Caption</div><div class="v"><button class="chip" data-copy="13">13px</button><button class="chip" data-copy="#808997"><span class="sw-dot" style="background:#808997"></span>#808997</button></div><div class="note">8px below the image.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="layout">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Layout &nbsp;&nbsp;+&nbsp;&nbsp;<b>Elementor</b><i>&rsaquo;</i>Settings<i>&rsaquo;</i>Features</div>
+        <h2><span class="num">07</span>Layout &amp; Breakpoints</h2>
+        <p>The site is wider than Elementor's default and stacks at points its default breakpoints miss. Set both of these or columns will break in the wrong places.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">Site Settings &rsaquo; Layout</div>
+        <div class="rows">
+          <div class="row row--head"><div>Setting</div><div>Value</div><div>Notes</div></div>
+          <div class="row"><div class="k">Content width</div><div class="v"><button class="chip" data-copy="1300">1300px</button></div><div class="note">Elementor's default is 1140 &mdash; change it. Everything on this sheet is measured against 1300.</div></div>
+          <div class="row"><div class="k">Narrow content width</div><div class="v"><button class="chip" data-copy="820">820px</button></div><div class="note">Set per-container for long-form text: FAQ answers, policy pages.</div></div>
+          <div class="row"><div class="k">Widgets space</div><div class="v"><button class="chip" data-copy="24">24px</button></div><div class="note">Elementor's default is 20.</div></div>
+          <div class="row"><div class="k">Side gutter</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="40">40px</button><button class="chip chip--bp" data-bp="T" data-copy="29">29px</button><button class="chip chip--bp" data-bp="M" data-copy="20">20px</button></div><div class="note">Left/right padding on every container. Never let it fall below 18px.</div></div>
+          <div class="row"><div class="k">Grid gap &mdash; standard</div><div class="v"><button class="chip" data-copy="24">24px</button></div><div class="note">Between cards in a row.</div></div>
+          <div class="row"><div class="k">Grid gap &mdash; loose</div><div class="v"><button class="chip" data-copy="32">32px</button></div><div class="note">Fleet cards, service cards.</div></div>
+          <div class="row"><div class="k">Split column gap</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="72">72px</button><button class="chip chip--bp" data-bp="M" data-copy="32">32px</button></div><div class="note">Image-beside-text rows. Weighted splits run 1.45fr / 1fr.</div></div>
+          <div class="row"><div class="k">Header height</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="84">84px</button><button class="chip chip--bp" data-bp="M" data-copy="70">70px</button></div><div class="note">Plus a 42px top bar above it for the phone number.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__t">Breakpoints <span>Enable Tablet Extra and Mobile Extra in Settings &rsaquo; Features</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Breakpoint</div><div>Set to</div><div>What changes there</div></div>
+          <div class="row"><div class="k">Tablet Extra</div><div class="v"><button class="chip" data-copy="1080">1080px</button></div><div class="note">4-column grids drop to 2 columns.</div></div>
+          <div class="row"><div class="k">Tablet</div><div class="v"><button class="chip" data-copy="1024">1024px</button></div><div class="note">Elementor default &mdash; leave it. Weighted splits go single column.</div></div>
+          <div class="row"><div class="k">Mobile Extra</div><div class="v"><button class="chip" data-copy="880">880px</button></div><div class="note">3-column grids drop to 2; side-by-side splits stack.</div></div>
+          <div class="row"><div class="k">Mobile</div><div class="v"><button class="chip" data-copy="767">767px</button></div><div class="note">Elementor default &mdash; leave it. Everything goes one column and the spacing scale shrinks.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="spacing">
+      <div class="panel__head">
+        <div class="path"><b>Per container</b><i>&rsaquo;</i>Advanced<i>&rsaquo;</i>Padding</div>
+        <h2><span class="num">08</span>Section Spacing</h2>
+        <p>Elementor has no global section padding, so this goes on each top-level container. Two values cover the whole site &mdash; use the standard rhythm unless two sections genuinely belong together.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">Vertical section padding <span>Top and bottom, per breakpoint</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Rhythm</div><div>Padding</div><div>When</div></div>
+          <div class="row"><div class="k">Standard</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="108">108px</button><button class="chip chip--bp" data-bp="T" data-copy="84">84px</button><button class="chip chip--bp" data-bp="M" data-copy="64">64px</button></div><div class="note">The default for every section. Caps at 120px on screens wider than ~1700px.</div></div>
+          <div class="row"><div class="k">Tight</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="64">64px</button><button class="chip chip--bp" data-bp="T" data-copy="53">53px</button><button class="chip chip--bp" data-bp="M" data-copy="44">44px</button></div><div class="note">When two sections are one thought &mdash; a heading band above a card grid.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__t">Spacing scale <span>Every gap and margin comes from this list</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Scope</div><div>Steps</div><div>Used for</div></div>
+          <div class="row"><div class="k">Inside a component</div><div class="v"><button class="chip" data-copy="4">4</button><button class="chip" data-copy="8">8</button><button class="chip" data-copy="12">12</button><button class="chip" data-copy="16">16</button></div><div class="note">Icon-to-label, label-to-field, badge padding.</div></div>
+          <div class="row"><div class="k">Between components</div><div class="v"><button class="chip" data-copy="24">24</button><button class="chip" data-copy="32">32</button><button class="chip" data-copy="44">44</button></div><div class="note">Grid gaps, card inner padding, heading-to-content.</div></div>
+          <div class="row"><div class="k">Between blocks</div><div class="v"><button class="chip" data-copy="64">64</button><button class="chip" data-copy="88">88</button><button class="chip" data-copy="120">120</button></div><div class="note">Section padding and major separations. Mobile caps at 88.</div></div>
+          <div class="row"><div class="k">Card padding</div><div class="v"><button class="chip chip--bp" data-bp="D" data-copy="32">32px</button><button class="chip chip--bp" data-bp="M" data-copy="24">24px</button></div><div class="note">Inside fleet cards, pricing cards, testimonial cards.</div></div>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="stripe"></div>
+        <div class="body">
+          <h4>Alternate your section backgrounds</h4>
+          <p>The page rhythm is <b>White &rarr; Cream <span class="inl">#faf7f1</span> &rarr; White &rarr; Ink <span class="inl">#0b1220</span></b>. A dark band roughly every third or fourth section is what stops a long service page feeling flat.</p>
+          <p>Every ink section needs white headings and <span class="inl">rgba(255,255,255,.66)</span> paragraphs &mdash; add the class <span class="inl">on-dark</span> from panel 10 to the container and both happen automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="surface">
+      <div class="panel__head">
+        <div class="path"><b>Per widget</b><i>&rsaquo;</i>Style / Advanced</div>
+        <h2><span class="num">09</span>Radius &amp; Shadow</h2>
+        <p>Six radii, five shadows, three durations. Pick from these; don't invent a new one for a single card.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">Corner radius</div>
+        <div class="rows">
+          <div class="row row--head"><div>Name</div><div>Value</div><div>Used on</div></div>
+          <div class="row"><div class="k">XS</div><div class="v"><button class="chip" data-copy="6">6px</button></div><div class="note">Tiny chips, focus outlines, the gold highlight swash.</div></div>
+          <div class="row"><div class="k">SM</div><div class="v"><button class="chip" data-copy="10">10px</button></div><div class="note">Form inputs, small thumbnails.</div></div>
+          <div class="row"><div class="k">MD</div><div class="v"><button class="chip" data-copy="16">16px</button></div><div class="note">Standard cards and images.</div></div>
+          <div class="row"><div class="k">LG</div><div class="v"><button class="chip" data-copy="22">22px</button></div><div class="note">Feature cards, the booking panel, hero media.</div></div>
+          <div class="row"><div class="k">XL</div><div class="v"><button class="chip" data-copy="30">30px</button></div><div class="note">Full-width feature panels only.</div></div>
+          <div class="row"><div class="k">Pill</div><div class="v"><button class="chip" data-copy="999">999px</button></div><div class="note">Every button and badge. No exceptions.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__t">Shadows <span>Navy-tinted &mdash; paste the whole string into Box Shadow &rsaquo; Custom</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Name</div><div>Value</div><div>Used on</div></div>
+          <div class="row"><div class="k">XS</div><div class="v"><button class="chip" data-copy="0 2px 6px rgba(11, 18, 32, 0.05)">0 2px 6px rgba(11,18,32,.05)</button></div><div class="note">Barely there. Input wells, sticky bars.</div></div>
+          <div class="row"><div class="k">SM</div><div class="v"><button class="chip" data-copy="0 6px 18px rgba(11, 18, 32, 0.07)">0 6px 18px rgba(11,18,32,.07)</button></div><div class="note">Resting cards.</div></div>
+          <div class="row"><div class="k">MD</div><div class="v"><button class="chip" data-copy="0 16px 38px rgba(11, 18, 32, 0.1)">0 16px 38px rgba(11,18,32,.1)</button></div><div class="note">Card hover, images.</div></div>
+          <div class="row"><div class="k">LG</div><div class="v"><button class="chip" data-copy="0 30px 66px rgba(11, 18, 32, 0.14)">0 30px 66px rgba(11,18,32,.14)</button></div><div class="note">The booking card floating over the hero.</div></div>
+          <div class="row"><div class="k">Gold</div><div class="v"><button class="chip" data-copy="0 12px 30px rgba(201, 162, 77, 0.36)">0 12px 30px rgba(201,162,77,.36)</button></div><div class="note">Primary buttons only.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__t">Motion <span>Advanced &rsaquo; Motion Effects, and any CSS transition</span></div>
+        <div class="rows">
+          <div class="row row--head"><div>Name</div><div>Value</div><div>Used for</div></div>
+          <div class="row"><div class="k">Fast</div><div class="v"><button class="chip" data-copy="200ms">200ms</button></div><div class="note">Hovers, colour changes, button lifts.</div></div>
+          <div class="row"><div class="k">Mid</div><div class="v"><button class="chip" data-copy="380ms">380ms</button></div><div class="note">Scroll reveals, accordions, the mobile drawer.</div></div>
+          <div class="row"><div class="k">Slow</div><div class="v"><button class="chip" data-copy="640ms">640ms</button></div><div class="note">Hero entrance, image parallax.</div></div>
+          <div class="row"><div class="k">Easing</div><div class="v"><button class="chip" data-copy="cubic-bezier(0.22, 1, 0.36, 1)">cubic-bezier(.22,1,.36,1)</button></div><div class="note">Elementor's nearest preset is <b>Ease Out</b>. Use the exact curve in Custom CSS where it matters.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="css">
+      <div class="panel__head">
+        <div class="path"><b>Site Settings</b><i>&rsaquo;</i>Custom CSS</div>
+        <h2><span class="num">10</span>Custom CSS</h2>
+        <p>Paste this once into Site Settings &rarr; Custom CSS. It gives you every token as a CSS variable, plus the button and badge variants Theme Style can't express. Afterwards you can type <span class="inl">var(--gold)</span> into any Elementor colour field.</p>
+      </div>
+      <div class="card">
+        <div class="card__t">Tokens and helper classes <span>One paste, then use the class names anywhere</span></div>
+        <div class="codewrap">
+          <button class="copy-all" data-copy-target="css-block">Copy all</button>
+          <pre id="css-block"><span class="cm">/* ── NYC Icon Limo — design tokens ─────────────────────── */</span>
+:root{
+  <span class="pr">--ink</span>:#0b1220;  <span class="pr">--ink-2</span>:#101a2c;  <span class="pr">--ink-3</span>:#17233a;  <span class="pr">--ink-4</span>:#1f2d47;
+  <span class="pr">--navy</span>:#132038; <span class="pr">--navy-soft</span>:#1b2c4a;
+  <span class="pr">--gold</span>:#c9a24d; <span class="pr">--gold-light</span>:#e3c887;
+  <span class="pr">--gold-pale</span>:#f3e6c8; <span class="pr">--gold-deep</span>:#a4802f;
+  <span class="pr">--cream</span>:#faf7f1; <span class="pr">--cream-2</span>:#f3ecdf;
+  <span class="pr">--text</span>:#141922; <span class="pr">--text-muted</span>:#5d6675; <span class="pr">--text-faint</span>:#808997;
+  <span class="pr">--text-invert-muted</span>:rgba(255,255,255,.66);
+  <span class="pr">--line</span>:#e8e4dc; <span class="pr">--line-strong</span>:#d6d1c6;
+  <span class="pr">--accent-tint</span>:rgba(201,162,77,.12);
+  <span class="pr">--accent-tint-2</span>:rgba(201,162,77,.2);
+  <span class="pr">--r-sm</span>:10px; <span class="pr">--r-md</span>:16px; <span class="pr">--r-lg</span>:22px; <span class="pr">--r-pill</span>:999px;
+  <span class="pr">--sh-sm</span>:0 6px 18px rgba(11,18,32,.07);
+  <span class="pr">--sh-md</span>:0 16px 38px rgba(11,18,32,.1);
+  <span class="pr">--sh-lg</span>:0 30px 66px rgba(11,18,32,.14);
+  <span class="pr">--sh-gold</span>:0 12px 30px rgba(201,162,77,.36);
+  <span class="pr">--ease</span>:cubic-bezier(.22,1,.36,1);
+}
+
+<span class="cm">/* ── Buttons — add "btn btn--dark" in Advanced › CSS Classes ── */</span>
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:12px;
+  padding:15px 27px; border:2px solid transparent; border-radius:var(--r-pill);
+  font-size:15px; font-weight:800; letter-spacing:.01em; line-height:1.2;
+  transition:background-color 200ms var(--ease), color 200ms var(--ease),
+             border-color 200ms var(--ease), transform 200ms var(--ease);
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn:active{ transform:none; }
+
+.btn--primary{ background:var(--gold); border-color:var(--gold);
+               color:var(--ink); box-shadow:var(--sh-gold); }
+.btn--primary:hover{ background:var(--gold-light);
+                     border-color:var(--gold-light); color:var(--ink); }
+
+.btn--dark{ background:var(--ink); border-color:var(--ink); color:#fff; }
+.btn--dark:hover{ background:var(--ink-3); border-color:var(--ink-3); color:#fff; }
+
+.btn--outline{ background:transparent; border-color:var(--line-strong); color:var(--text); }
+.btn--outline:hover{ background:var(--ink); border-color:var(--ink); color:#fff; }
+
+.btn--outline-light{ background:transparent;
+                     border-color:rgba(255,255,255,.42); color:#fff; }
+.btn--outline-light:hover{ background:#fff; border-color:#fff; color:var(--ink); }
+
+.btn--sm{ padding:11px 20px; font-size:13px; }
+.btn--lg{ padding:18px 35px; font-size:16px; }
+.btn--block{ width:100%; }
+
+@media (max-width:480px){
+  .btn{ padding:14px 21px; font-size:13px; }
+  .btn--lg{ padding:16px 24px; font-size:15px; }
+}
+
+<span class="cm">/* ── Eyebrow badge — class "tag" ───────────────────────── */</span>
+.tag{
+  display:inline-flex; align-items:center; gap:8px; padding:5px 13px;
+  border-radius:var(--r-pill); background:var(--accent-tint);
+  border:1px solid var(--accent-tint-2); color:var(--gold-deep);
+  font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+}
+.tag--dark{ background:var(--ink); border-color:var(--ink); color:var(--gold-light); }
+.tag--invert{ background:rgba(255,255,255,.08);
+              border-color:rgba(255,255,255,.12); color:#fff; }
+
+<span class="cm">/* ── Gold swash behind a word — &lt;span class="mark"&gt;word&lt;/span&gt; ── */</span>
+.mark{ position:relative; display:inline-block; white-space:nowrap; }
+.mark::after{
+  content:""; position:absolute; left:-2px; right:-2px; bottom:.08em;
+  height:.34em; background:var(--accent-tint-2); border-radius:6px; z-index:-1;
+}
+.gold{ color:var(--gold); }
+
+<span class="cm">/* ── Dark sections — class "on-dark" on the container ──── */</span>
+.on-dark{ background:var(--ink); color:var(--text-invert-muted); }
+.on-dark h1,.on-dark h2,.on-dark h3,.on-dark h4,.on-dark h5{ color:#fff; }
+.on-dark p{ color:var(--text-invert-muted); }
+.on-dark--navy{ background:var(--navy); }
+
+<span class="cm">/* ── Arrow link — class "link" ─────────────────────────── */</span>
+.link{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:15px; font-weight:800; color:var(--gold-deep);
+  transition:gap 200ms var(--ease), color 200ms var(--ease);
+}
+.link::after{ content:"\2192"; }
+.link:hover{ gap:12px; color:var(--ink); }
+.link--light{ color:var(--gold-light); }
+.link--light:hover{ color:#fff; }
+
+<span class="cm">/* ── Cards ─────────────────────────────────────────────── */</span>
+.card-lux{
+  background:#fff; border:1px solid var(--line);
+  border-radius:var(--r-lg); padding:32px; box-shadow:var(--sh-sm);
+  transition:box-shadow 200ms var(--ease), transform 200ms var(--ease);
+}
+.card-lux:hover{ box-shadow:var(--sh-md); transform:translateY(-3px); }
+
+@media (max-width:767px){ .card-lux{ padding:24px; } }
+
+<span class="cm">/* ── Accessibility ─────────────────────────────────────── */</span>
+:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; border-radius:6px; }
+::selection{ background:var(--gold); color:var(--ink); }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    transition-duration:.001ms !important;
+  }
+}</pre>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="stripe"></div>
+        <div class="body">
+          <h4>No Elementor Pro? Custom CSS is a Pro feature</h4>
+          <p>Paste the same block into <b>Appearance &rarr; Customize &rarr; Additional CSS</b>, or into your child theme's <span class="inl">style.css</span>. The class names work identically &mdash; only the place you paste it changes.</p>
+          <p>Once it is in, any Elementor colour field accepts <span class="inl">var(--gold)</span>, and any size field accepts the values on this sheet.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="rule"></div>
+  <p>Values extracted from <b>assets/css/variables.css</b>, <b>base.css</b> and <b>components.css</b>. Fluid <span class="inl">clamp()</span> sizes converted to fixed Desktop / Tablet / Mobile values measured at 1440&nbsp;px, 900&nbsp;px and 390&nbsp;px. If a token changes in the source CSS, change it here too.</p>
+</footer>
+
+<script>
+(function(){
+  function flash(el){
+    el.classList.add("is-copied");
+    var isAll = el.classList.contains("copy-all");
+    var prev = el.textContent;
+    if(isAll) el.textContent = "Copied";
+    setTimeout(function(){
+      el.classList.remove("is-copied");
+      if(isAll) el.textContent = prev;
+    }, 1300);
+  }
+  function fallback(text, el){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      flash(el);
+    }catch(e){}
+  }
+  function write(text, el){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ flash(el); }).catch(function(){ fallback(text, el); });
+    } else {
+      fallback(text, el);
+    }
+  }
+  document.addEventListener("click", function(e){
+    var chip = e.target.closest("[data-copy]");
+    if(chip){ write(chip.getAttribute("data-copy"), chip); return; }
+    var all = e.target.closest("[data-copy-target]");
+    if(all){
+      var src = document.getElementById(all.getAttribute("data-copy-target"));
+      if(src) write(src.innerText, all);
+    }
+  });
+})();
+</script>
+</body>
+</html>

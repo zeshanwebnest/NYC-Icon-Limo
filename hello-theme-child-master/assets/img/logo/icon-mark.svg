@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NYC Icon Limo emblem">
+  <path d="M16 53 V35 H21 V25 H25.5 V16 H29 V14 L32 5 L35 14 V16 H38.5 V25 H43 V35 H48 V53 Z" fill="currentColor"/>
+  <rect x="14" y="56" width="36" height="2" rx="1" fill="currentColor" opacity="0.55"/>
+</svg>

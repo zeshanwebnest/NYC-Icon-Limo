@@ -1,0 +1,168 @@
+/* ==========================================================================
+   NYC ICON LIMO — Design Tokens
+   Single source of truth for colour, type, spacing, radius, shadow, motion.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------------
+     COLOUR — core palette
+     --------------------------------------------------------------------- */
+  --ink: #0b1220;
+  --ink-2: #101a2c;
+  --ink-3: #17233a;
+  --ink-4: #1f2d47;
+
+  --navy: #132038;
+  --navy-soft: #1b2c4a;
+
+  --gold: #c9a24d;
+  --gold-light: #e3c887;
+  --gold-pale: #f3e6c8;
+  --gold-deep: #a4802f;
+
+  --white: #ffffff;
+  --cream: #faf7f1;
+  --cream-2: #f3ecdf;
+
+  /* Warm neutrals so greys sit comfortably beside the cream surfaces */
+  --n-900: #141922;
+  --n-800: #242b38;
+  --n-700: #3d4553;
+  --n-600: #5d6675;
+  --n-500: #808997;
+  --n-400: #a7aeba;
+  --n-300: #c9cfd8;
+  --n-200: #e5e8ed;
+  --n-100: #f2f4f7;
+
+  /* ---------------------------------------------------------------------
+     COLOUR — semantic roles
+     --------------------------------------------------------------------- */
+  --bg: var(--white);
+  --bg-soft: var(--cream);
+  --bg-dark: var(--ink);
+
+  --text: var(--n-900);
+  --text-muted: var(--n-600);
+  --text-faint: var(--n-500);
+  --text-invert: #ffffff;
+  --text-invert-muted: rgba(255, 255, 255, 0.66);
+
+  --line: #e8e4dc;
+  --line-strong: #d6d1c6;
+  --line-invert: rgba(255, 255, 255, 0.12);
+  --line-invert-strong: rgba(255, 255, 255, 0.28);
+
+  --accent: var(--gold);
+  --accent-deep: var(--gold-deep);
+  --accent-tint: rgba(201, 162, 77, 0.12);
+  --accent-tint-2: rgba(201, 162, 77, 0.2);
+
+  --star: #f0b429;
+
+  /* ---------------------------------------------------------------------
+     TYPOGRAPHY — one confident geometric sans, used at weight
+     --------------------------------------------------------------------- */
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --fs-hero: clamp(2.6rem, 1.6rem + 4.1vw, 5rem);
+  --fs-d1: clamp(2.1rem, 1.55rem + 2.4vw, 3.6rem);
+  --fs-d2: clamp(1.8rem, 1.4rem + 1.8vw, 2.9rem);
+  --fs-d3: clamp(1.35rem, 1.2rem + 0.8vw, 1.85rem);
+  --fs-h4: clamp(1.1rem, 1.03rem + 0.35vw, 1.3rem);
+  --fs-lg: 1.0625rem;
+  --fs-base: 1rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+  --fs-2xs: 0.6875rem;
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.2;
+  --lh-mid: 1.45;
+  --lh-body: 1.72;
+
+  --ls-tight: -0.025em;
+  --ls-snug: -0.015em;
+  --ls-wide: 0.05em;
+  --ls-wider: 0.12em;
+  --ls-widest: 0.2em;
+
+  /* ---------------------------------------------------------------------
+     SPACING
+     --------------------------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.75rem;
+  --space-8: 4rem;
+  --space-9: 5.5rem;
+  --space-10: 7.5rem;
+  --space-11: 10rem;
+
+  --section-y: clamp(4rem, 2.8rem + 4.4vw, 7.5rem);
+  --section-y-sm: clamp(2.75rem, 2.2rem + 2vw, 4.5rem);
+
+  /* ---------------------------------------------------------------------
+     LAYOUT
+     --------------------------------------------------------------------- */
+  --shell: 1300px;
+  --shell-narrow: 820px;
+  --gutter: clamp(1.15rem, 0.8rem + 1.8vw, 2.5rem);
+  --header-h: 84px;
+  --topbar-h: 42px;
+  /* How far the booking card rides up over the hero. The hero reserves this
+     PLUS a clearance band as bottom padding, so the card never lands on the
+     hero's own content. Change it here and both sides stay in step. */
+  --hero-overlap: 7rem;
+  --hero-clearance: 4rem;
+
+  /* ---------------------------------------------------------------------
+     RADIUS — generous and modern
+     --------------------------------------------------------------------- */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* ---------------------------------------------------------------------
+     SHADOW — soft, warm, clearly present
+     --------------------------------------------------------------------- */
+  --sh-xs: 0 2px 6px rgba(11, 18, 32, 0.05);
+  --sh-sm: 0 6px 18px rgba(11, 18, 32, 0.07);
+  --sh-md: 0 16px 38px rgba(11, 18, 32, 0.1);
+  --sh-lg: 0 30px 66px rgba(11, 18, 32, 0.14);
+  --sh-gold: 0 12px 30px rgba(201, 162, 77, 0.36);
+
+  /* ---------------------------------------------------------------------
+     MOTION
+     --------------------------------------------------------------------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 200ms;
+  --t-mid: 380ms;
+  --t-slow: 640ms;
+
+  /* ---------------------------------------------------------------------
+     LAYERS
+     --------------------------------------------------------------------- */
+  --z-sticky: 40;
+  --z-drawer: 50;
+  --z-header: 60;
+  --z-skip: 120;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --space-8: 2.75rem;
+    --space-9: 3.5rem;
+    --space-10: 4.5rem;
+    --space-11: 5.5rem;
+    --header-h: 70px;
+  }
+}

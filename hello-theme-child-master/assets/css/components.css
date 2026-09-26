@@ -751,7 +751,8 @@ a.topbar__item:hover {
   display: flex;
   align-items: center;
   min-height: min(96vh, 940px);
-  padding-top: calc(var(--header-h) + var(--topbar-h) + var(--space-8));
+  /* The header is in flow now, so the hero no longer clears a fixed bar. */
+  padding-top: var(--space-8);
   padding-bottom: calc(var(--hero-overlap) + var(--hero-clearance));
   background: var(--ink);
   overflow: hidden;
@@ -2592,7 +2593,8 @@ a.topbar__item:hover {
   display: flex;
   align-items: center;
   min-height: clamp(340px, 48vh, 520px);
-  padding-top: calc(var(--header-h) + var(--topbar-h) + var(--space-7));
+  /* The header is in flow now, so the hero no longer clears a fixed bar. */
+  padding-top: var(--space-7);
   padding-bottom: var(--space-7);
   background: var(--ink);
   overflow: hidden;
