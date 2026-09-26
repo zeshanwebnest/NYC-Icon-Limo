@@ -283,7 +283,12 @@ a.topbar__item:hover {
   position: absolute;
   top: calc(100% + 8px);
   left: 0;
-  min-width: 290px;
+  /* Eight service links no longer fit one column. Two columns keeps the
+     panel a readable height and stops the last items falling off-screen. */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+  min-width: 580px;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--r-md);
@@ -453,6 +458,13 @@ a.topbar__item:hover {
 
 .nav__toggle[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 1240px) {
+  .nav__panel {
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 300px;
+  }
 }
 
 @media (max-width: 1300px) {
@@ -3939,5 +3951,88 @@ a.info-card__value:hover {
   }
   .subscribe__form .btn {
     width: 100%;
+  }
+}
+
+/* ==========================================================================
+   26. ROUTE TABLE — destination, distance and drive time
+   Used on the airport and area pages. Values carry their own units so the
+   header row can drop away on a phone without the numbers losing meaning.
+   ========================================================================== */
+
+.routes {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--white);
+  box-shadow: var(--sh-xs);
+  overflow: hidden;
+}
+
+.routes__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--space-4);
+  align-items: baseline;
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.routes__row:first-child {
+  border-top: 0;
+}
+
+.routes__row--head {
+  background: var(--bg-soft);
+  padding-block: var(--space-3);
+}
+
+.routes__row--head span {
+  font-size: var(--fs-2xs);
+  font-weight: 800;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.routes__to {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.routes__to span {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
+.routes__val {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.routes__note {
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--line);
+  background: var(--bg-soft);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+
+@media (max-width: 620px) {
+  .routes__row--head {
+    display: none;
+  }
+
+  .routes__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: var(--space-2);
+  }
+
+  .routes__to {
+    grid-column: 1 / -1;
   }
 }

@@ -14,13 +14,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.4.0' );
+define( 'HELLO_ELEMENTOR_CHILD_VERSION', '2.4.1' );
 
 /**
  * Bumped whenever the CSS or JS in /assets changes, so browsers pick up the
  * new files instead of serving a stale cache.
  */
-define( 'NYC_ICON_VERSION', '1.0.1' );
+define( 'NYC_ICON_VERSION', '1.0.2' );
 
 require_once get_stylesheet_directory() . '/inc/icons.php';
 require_once get_stylesheet_directory() . '/inc/template-tags.php';
